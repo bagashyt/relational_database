@@ -1,0 +1,135 @@
+## Create Database universe
+CREATE DATABASE universe;
+
+
+## Create Table galaxy, star, planet, moon with their id
+CREATE TABLE galaxy(galaxy_id SERIAL NOT NULL UNIQUE PRIMARY KEY); 
+CREATE TABLE star(star_id SERIAL NOT NULL UNIQUE PRIMARY KEY); 
+CREATE TABLE planet(planet_id SERIAL NOT NULL UNIQUE PRIMARY KEY);
+CREATE TABLE moon(moon_id SERIAL NOT NULL UNIQUE PRIMARY KEY);
+CREATE TABLE more_info(more_info_id SERIAL NOT NULL UNIQUE PRIMARY KEY);
+
+## Add column name with type VARCHAR on each table
+ALTER TABLE galaxy ADD COLUMN name VARCHAR(255) UNIQUE NOT NULL;
+ALTER TABLE star ADD COLUMN name VARCHAR(255) UNIQUE NOT NULL;
+ALTER TABLE planet ADD COLUMN name VARCHAR(255) UNIQUE NOT NULL;
+ALTER TABLE moon ADD COLUMN name VARCHAR(255) UNIQUE NOT NULL;
+ALTER TABLE more_info ADD COLUMN name VARCHAR(255) UNIQUE NOT NULL;
+
+## Add column description with type TEXT on each table
+ALTER TABLE galaxy ADD COLUMN description TEXT;
+ALTER TABLE star ADD COLUMN description TEXT;
+ALTER TABLE planet ADD COLUMN description TEXT;
+ALTER TABLE moon ADD COLUMN description TEXT;
+ALTER TABLE more_info ADD COLUMN description TEXT;
+
+## Add column age_in_millions_of_years with type NUMERIC 
+ALTER TABLE galaxy ADD COLUMN age_in_millions_of_years NUMERIC;
+ALTER TABLE star ADD COLUMN age_in_millions_of_years NUMERIC(6,3);
+ALTER TABLE planet ADD COLUMN age_in_millions_of_years NUMERIC(6,3);
+ALTER TABLE moon ADD COLUMN age_in_millions_of_years NUMERIC(6,3);
+
+## Add column is_spherical with type BOOLEAN 
+ALTER TABLE galaxy ADD COLUMN is_spherical BOOLEAN;
+ALTER TABLE star ADD COLUMN is_spherical BOOLEAN;
+ALTER TABLE planet ADD COLUMN is_spherical BOOLEAN;
+ALTER TABLE moon ADD COLUMN is_spherical BOOLEAN;
+
+## Add column has_life with type BOOLEAN 
+ALTER TABLE galaxy ADD COLUMN has_life BOOLEAN;
+ALTER TABLE star ADD COLUMN has_life BOOLEAN;
+ALTER TABLE planet ADD COLUMN has_life BOOLEAN;
+ALTER TABLE moon ADD COLUMN has_life BOOLEAN;
+
+## Add column area with type INT 
+ALTER TABLE galaxy ADD COLUMN area INT;
+ALTER TABLE star ADD COLUMN area INT;
+ALTER TABLE planet ADD COLUMN area INT;
+ALTER TABLE moon ADD COLUMN area INT;
+
+## Add column volume with type INT 
+ALTER TABLE galaxy ADD COLUMN volume INT;
+ALTER TABLE star ADD COLUMN volume INT;
+ALTER TABLE planet ADD COLUMN volume INT;
+ALTER TABLE moon ADD COLUMN volume INT;
+
+## Foreign key has same name as Column
+ALTER TABLE galaxy ADD COLUMN star_id INT NOT NULL;
+ALTER TABLE star ADD COLUMN galaxy_id INT NOT NULL;
+ALTER TABLE star ADD COLUMN planet_id INT NOT NULL;
+ALTER TABLE planet ADD COLUMN star_id INT NOT NULL;
+ALTER TABLE planet ADD COLUMN moon_id INT NOT NULL;
+ALTER TABLE moon ADD COLUMN planet_id INT NOT NULL;
+
+
+## insert Data galaxy(6), star(6), planet(12), moon(20), more_info(3)
+
+INSERT INTO more_info(name, description) VALUES 
+('galaxy', 'info galaxy'),
+('star', 'info star'),
+('planet', 'info planet');
+
+INSERT INTO galaxy(name, description, age_in_millions_of_years, is_spherical, has_life, area, volume, star_id) VALUES
+('galaxy1', 'its galaxy1', 1000, false, false, 1, 100, 1),
+('galaxy2', 'its galaxy2', 1000, false, false, 1, 100, 2),
+('galaxy3', 'its galaxy3', 1000, false, false, 1, 100, 3),
+('galaxy4', 'its galaxy4', 1000, false, false, 1, 100, 4),
+('galaxy5', 'its galaxy5', 1000, false, false, 1, 100, 5),
+('galaxy6', 'its galaxy1', 1000, false, false, 1, 100, 6);
+
+INSERT INTO star(name, description, age_in_millions_of_years, is_spherical, has_life, area, volume, galaxy_id, planet_id) VALUES
+('star1', 'its star1', 1000, false, false, 1, 100, 1, 1),
+('star2', 'its star2', 1000, false, false, 1, 100, 2, 2),
+('star3', 'its star3', 1000, false, false, 1, 100, 3, 3),
+('star4', 'its star4', 1000, false, false, 1, 100, 4, 4),
+('star5', 'its star5', 1000, false, false, 1, 100, 5, 5),
+('star6', 'its star6', 1000, false, false, 1, 100, 6, 6);
+
+
+INSERT INTO planet(name, description, age_in_millions_of_years, is_spherical, has_life, area, volume, star_id, moon_id) VALUES
+('planet1', 'its planet1', 1000, false, false, 1, 100, 1, 1),
+('planet2', 'its planet2', 1000, false, false, 1, 100, 2, 2),
+('planet3', 'its planet3', 1000, false, false, 1, 100, 3, 3),
+('planet4', 'its planet4', 1000, false, false, 1, 100, 4, 4),
+('planet5', 'its planet5', 1000, false, false, 1, 100, 5, 5),
+('planet6', 'its planet6', 1000, false, false, 1, 100, 6, 6),
+('planet7', 'its planet7', 1000, false, false, 1, 100, 1, 1),
+('planet8', 'its planet8', 1000, false, false, 1, 100, 2, 2),
+('planet9', 'its planet9', 1000, false, false, 1, 100, 3, 3),
+('planet10', 'its planet10', 1000, false, false, 1, 100, 4, 4),
+('planet11', 'its planet11', 1000, false, false, 1, 100, 5, 5),
+('planet12', 'its planet12', 1000, false, false, 1, 100, 6, 6);
+
+
+INSERT INTO moon(name, description, age_in_millions_of_years, is_spherical, has_life, area, volume, planet_id) VALUES
+('moon1', 'its moon1', 1000, false, false, 1, 100, 1),
+('moon2', 'its moon2', 1000, false, false, 1, 100, 2),
+('moon3', 'its moon3', 1000, false, false, 1, 100, 3),
+('moon4', 'its moon4', 1000, false, false, 1, 100, 4),
+('moon5', 'its moon5', 1000, false, false, 1, 100, 5),
+('moon6', 'its moon6', 1000, false, false, 1, 100, 6),
+('moon7', 'its moon7', 1000, false, false, 1, 100, 1),
+('moon8', 'its moon8', 1000, false, false, 1, 100, 2),
+('moon9', 'its moon9', 1000, false, false, 1, 100, 3),
+('moon10', 'its moon10', 1000, false, false, 1, 100, 4),
+('moon11', 'its moon11', 1000, false, false, 1, 100, 5),
+('moon12', 'its moon12', 1000, false, false, 1, 100, 6),
+('moon13', 'its moon13', 1000, false, false, 1, 100, 1),
+('moon14', 'its moon14', 1000, false, false, 1, 100, 2),
+('moon15', 'its moon15', 1000, false, false, 1, 100, 3),
+('moon16', 'its moon16', 1000, false, false, 1, 100, 4),
+('moon17', 'its moon17', 1000, false, false, 1, 100, 5),
+('moon18', 'its moon18', 1000, false, false, 1, 100, 6),
+('moon19', 'its moon19', 1000, false, false, 1, 100, 5),
+('moon20', 'its moon20', 1000, false, false, 1, 100, 6);
+
+
+## add foreign key to each column
+ALTER TABLE galaxy ADD FOREIGN KEY(star_id) REFERENCES star(star_id);
+ALTER TABLE star ADD FOREIGN KEY(galaxy_id) REFERENCES galaxy(galaxy_id);
+ALTER TABLE planet ADD FOREIGN KEY(star_id) REFERENCES star(star_id);
+ALTER TABLE moon ADD FOREIGN KEY(planet_id) REFERENCES planet(planet_id);
+
+## Export database
+in terminal
+pg_dump -cC -U freecodecamp universe > universe.sql
