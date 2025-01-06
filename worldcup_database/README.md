@@ -1,8 +1,8 @@
-## WORLDCUP DATABASE
+# WORLDCUP DATABASE
 
 This is a repository for storing result and solution of Freecodecamp [Relational-database](https://www.freecodecamp.org/learn/relational-database/) Course.
 
 
-# TASK
+## TASK
 ![task](/worldcup_database/task.png)
 
