@@ -1,0 +1,30 @@
+CREATE DATABASE salon;
+
+CREATE TABLE customers(
+customer_id SERIAL PRIMARY KEY,
+phone VARCHAR UNIQUE NOT NULL,
+name VARCHAR NOT NULL
+);
+
+CREATE TABLE services(
+service_id SERIAL PRIMARY KEY,
+name VARCHAR NOT NULL,
+detail VARCHAR NOT NULL,
+price VARCHAR NOT NULL
+);
+
+CREATE TABLE appointments(
+appointment_id SERIAL PRIMARY KEY,
+customer_id INT NOT NULL,
+service_id INT NOT NULL,
+time VARCHAR NOT NULL,
+CONSTRAINT fk_customer FOREIGN KEY(customer_id) REFERENCES customers(customer_id),
+CONSTRAINT fk_service FOREIGN KEY(service_id) REFERENCES services(service_id)
+);
+
+INSERT INTO services(name, detail, price) VALUES
+('cut', 'trim hair', '$10'),
+('color', 'coloring hair', '$20'),
+('perm', 'perming hair', '$17'),
+('style', 'styling hair', '$15'),
+('trim', 'triming hair', '$13');
